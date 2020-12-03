@@ -1,0 +1,26 @@
+/// BMDesktop
+#include <iostream>
+#include <fstream>
+using namespace std;
+
+string nameProb="test";
+ifstream fin(nameProb+".in");
+ofstream fout(nameProb+".out");
+int nr,cnt;
+char s[100];
+int main()
+{
+    /// fin
+    cnt=0;
+    for(int i=1;i<=323;i++)
+    {
+        fin>>s;
+
+        cnt%=31;
+        if(s[cnt]=='#')
+            nr++;
+        cnt+=3;
+    }
+    cout<<nr;
+
+}
