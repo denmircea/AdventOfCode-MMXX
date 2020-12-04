@@ -1,0 +1,36 @@
+/// BMDesktop
+#include <iostream>
+#include <fstream>
+#include <cstring>
+using namespace std;
+
+string nameProb="test";
+ifstream fin(nameProb+".in");
+//ofstream fout(nameProb+".out");
+int prop,nr;
+char s[104];
+int main()
+{
+    prop=0;
+    while(fin.getline(s,100)){
+        if(strlen(s)<2){
+            if(prop>=7){
+                nr++;
+
+            }
+            prop=0;
+            continue;
+        }
+        char *tok;
+        for(tok=strtok(s," :");tok!=NULL;tok=strtok(NULL," :")){
+           // cout<<tok<<"\n";
+            if(tok[0]!='c'){
+                prop++;
+            }
+            tok=strtok(NULL," :");
+
+        }
+    }
+    cout<<nr;
+}
+
