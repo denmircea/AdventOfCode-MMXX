@@ -1,0 +1,86 @@
+
+/// BMDesktop
+#include <iostream>
+#include <fstream>
+#include <cstring>
+#include <map>
+#include <vector>
+using namespace std;
+
+string nameProb="test";
+ifstream fin(nameProb+".in");
+//ofstream fout(nameProb+".out");
+char *param[4000];
+char s[4000];
+int nr,start;
+map<string,int> colors;
+int ncolor=0;
+int fr[4000];
+vector <int> L[4000];
+string convertToString(char* a)
+{
+    int i;
+    string s = "";
+    int l=strlen(a);
+    for (i = 0; i < l; i++)
+    {
+        s = s + a[i];
+    }
+    return s;
+}
+void addmuchie(string bag2,string bag)
+{
+
+    if(colors[bag2]==0)
+        colors[bag2]=++ncolor;
+    if(bag2=="shinygold")
+    {
+        start=colors[bag2];
+    }
+    if(colors[bag]==0)
+        colors[bag]=++ncolor;
+   //cout<<colors[bag]<<" "<<colors[bag2]<<endl;
+    L[colors[bag2]].push_back(colors[bag]);
+}
+void dfs(int nod){
+    nr++;
+    fr[nod]=1;
+    for(auto it:L[nod]){
+        if(fr[it]==0){
+            dfs(it);
+        }
+    }
+}
+int main()
+{
+    while(fin.getline(s,300))
+    {
+        char *tok;
+        int k=0;
+        for(tok=strtok(s," ,"); tok!=NULL; tok=strtok(NULL," ,"))
+        {
+            param[++k]=tok;
+        }
+        string bag=convertToString(param[1]);
+        string aux=convertToString(param[2]);
+            if(aux!="bag"&&aux!="bags")
+                bag+=aux;
+        //cout<<bag<<endl;
+        for(int i=5; i+3<=k; i+=4)
+        {
+            string bag2=convertToString(param[i+1]);
+            string aux=convertToString(param[i+2]);
+            if(aux!="bag"&&aux!="bags")
+            bag2+=aux;
+        //    cout<<bag2<<" ";
+            addmuchie(bag2,bag);
+        }
+       // cout<<endl;
+    }
+    /// dfs din start
+    dfs(start);
+    for(auto it:colors){
+       // cout<<it.first<<" "<<it.second<<endl;
+    }
+    cout<<nr-1;
+}
