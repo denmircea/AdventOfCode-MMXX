@@ -1,0 +1,82 @@
+ 1) 1431 **********  Ovidiu Firescu (AoC++)
+ 2) 1414 **********  Brașoveanu Mircea Denis
+ 3) 1360 **********  razvanlgu
+ 4) 1358 **********  Gabriel Diaconita (AoC++)
+ 5) 1348 **********  Patrick Ondreovici
+ 6) 1335 **********  Constantin Vetezi
+ 7) 1328 **********  Telechi Nicolae
+ 8) 1309 **********  Vlad Vasilescu (AoC++)
+ 9) 1294 **********  MihaiUdrea
+10) 1272 **********  Iulian Popa (AoC++)
+11) 1250 **********  bluespeck (AoC++)
+12) 1243 **********  Paul Munteanu
+13) 1232 **********  RodicaMihaelaVasilescu
+14) 1220 **********  CristianTudor89
+15) 1206 **********  petreleon
+16) 1191 **********  CristiCeban
+17) 1178 **********  Daniela Trandafir
+18) 1167 **********  Teodor 'døru' MICU
+19) 1128 **********  (anonymous user #635723)
+20) 1103 **********  costyr (AoC++)
+21) 1100 **********  Andrei Suca
+22) 1099 **********  Tibi
+23) 1061 **********  Marina Rusu
+24) 1006 **********  grigoresc
+25)  981 **********  Ciprian Burca
+26)  947 **********  c-Viorel
+27)  937 **********  Andreea Barbu
+28)  888 **********  Laurențiu Nicola
+29)  856 **********  Gheorghe Rada
+30)  854 **********  Catalin Rotaru (AoC++)
+31)  854 **********  Alexandru Dragomir
+32)  826 **********  mihnea9923
+33)  787 **********  AdiCutitoiu
+34)  763 **********  Artyom Timiriazev
+35)  724 **********  (anonymous user #384415)
+36)  716 **********  GanescuRobert
+37)  711 **********  Mihai Cancescu
+38)  696 **********  Predi Dragos
+39)  694 **********  Bogdan Draghici
+40)  684 **********  (anonymous user #1022828)
+41)  636 **********  MoonCake0019
+42)  628 **********  cpp-red-lion (AoC++)
+43)  605 **********  Horatiu Prica
+44)  604 **********  Amzuloiu Andrei-Ciprian
+45)  566 **********  ȘTEFAN-DANIEL PÎRVULESCU
+46)  561 **********  dianaMihaelaDiaconu
+47)  536 **********  zidariuandrei
+48)  504 **********  (anonymous user #374170)
+49)  499 **********  (anonymous user #969426)
+50)  491 **********  Toma Alexandru
+51)  440 **********  emiliannicu
+52)  436 **********  ALINA-ANDREEA FILIP
+53)  411 **********  Pade88
+54)  382 **********  Andreiw99
+55)  375 **********  (anonymous user #1010979)
+56)  328 **********  (anonymous user #974775)
+57)  288 **********  Teodor Amz
+58)  276 **********  Pecetea Raului
+59)  275 **********  Alexandru Oprean
+60)  262 **********  Silviu Mitroi
+61)  206 **********  Aodai
+62)  169 **********  Medusa
+63)  167 **********  Enache Ionut
+64)  154 **********  gabriel-mocioaca
+65)  137 **********  (anonymous user #391625)
+66)  118 **********  daniel_iova
+67)  107 **********  radugheo
+68)   91 **********  Robert-Alexandru Stoican
+69)   63 **********  robertgeica
+70)   56 **********  Cosmin Gaicu
+71)   52 **********  Serban Teodor
+72)   44 **********  VladimirSirbu
+73)    0 **********  Caphyon
+74)    0 **********  (anonymous user #374758)
+75)    0 **********  negru adelin
+76)    0 **********  Mirel Cosulschi
+77)    0 **********  Ghita David Leonard
+78)    0 **********  Ovidiu Firescu
+79)    0 **********  tenea07adi
+80)    0 **********  Ispas Valentin
+81)    0 **********  Tudor Gabi
+82)    0 **********  ANDREI-PETRIȘOR BUCULEA
