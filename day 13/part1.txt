@@ -1,0 +1,33 @@
+
+/// BMDesktop
+#include <iostream>
+#include <fstream>
+#include <cstring>
+using namespace std;
+
+string nameProb="test";
+ifstream fin(nameProb+".in");
+//ofstream fout(nameProb+".out");
+int t;
+char s[40];
+int v[100],k;
+int main()
+{
+    fin>>t;
+    while(fin>>s){
+        if(s[0]=='x')
+            continue;
+        else {
+            v[++k]=atoi(s);
+        }
+    }
+    for(int tm=t;;tm++){
+        for(int j=1;j<=k;j++){
+            if(tm%v[j]==0){
+                cout<<(tm-t)*v[j];
+                return 0;
+            }
+        }
+    }
+
+}
