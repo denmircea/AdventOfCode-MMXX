@@ -1,0 +1,88 @@
+/// BMDesktop
+#include <iostream>
+#include <fstream>
+#include <map>
+using namespace std;
+
+string nameProb="test";
+ifstream fin(nameProb+".in");
+//ofstream fout(nameProb+".out");
+string t;
+char mask[100];
+map<long long,long long> m;
+long long sum,sumtot;
+int main()
+{
+    while(fin>>t)
+    {
+        if(t=="mask")
+        {
+            for(auto &it:m)
+            {
+                long long x=it.second;
+                for(long long i=0; i<36; i++)
+                {
+
+                    if(mask[35-i]!='X')
+                    {
+                        if(mask[35-i]=='1')
+                        {
+                            x|=(1LL<<i);
+                        }
+                        else if(mask[35-i]=='0')
+                        {
+                            if(( (1LL<<i)&x )!=0)
+                                x-=(1LL<<i);
+
+                        }
+                    }
+                }
+                it.second=x;
+                sum+=x;
+            }
+            sumtot+=sum;
+            sum=0;
+            fin>>mask;
+           // m.clear();
+            fin.get();
+
+        }
+        else
+        {
+            long long loc;
+            fin>>loc;
+            long long val;
+            fin>>val;
+            m[loc]=val;
+        }
+
+
+    }
+    for(auto &it:m)
+    {
+        unsigned long long x=it.second;
+        for(long long i=0; i<36; i++)
+        {
+            if(mask[35-i]!='X')
+            {
+                if(mask[35-i]=='1')
+                {
+                    x|=(1LL<<i);
+                }
+                else if(mask[35-i]=='0')
+                {
+                    if(( (1LL<<i)&x )!=0)
+                        x-=(1LL<<i);
+
+                }
+            }
+        }
+        it.second=x;
+        sum+=x;
+    }
+    sumtot=0;
+    for(auto it:m){
+        sumtot+=it.second;
+    }
+    cout<<sumtot;
+}
