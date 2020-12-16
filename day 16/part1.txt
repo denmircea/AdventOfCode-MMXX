@@ -1,0 +1,57 @@
+/// BMDesktop
+#include <iostream>
+#include <fstream>
+#include <vector>
+using namespace std;
+
+string nameProb="test";
+ifstream fin(nameProb+".in");
+//ofstream fout(nameProb+".out");
+string as,bs,cs,ds,s;
+vector < pair<int,int> > v;
+int a,b,c,d;
+bool valid(int a){
+    for(auto it:v){
+        if(it.first<=a&&it.second>=a)
+            return 1;
+    }
+    return 0;
+}
+int main()
+{
+    while(fin>>s){
+        if(s=="your"){
+            break;
+        }
+        if(s==":"){
+            /// citesc proprietati
+            fin>>as>>bs>>s>>cs>>ds;
+            a=stoi(as);
+            b=stoi(bs);
+            c=stoi(cs);
+            d=stoi(ds);
+            v.push_back({a,b});
+            v.push_back({c,d});
+        }
+    }
+    /// your
+    fin>>s; /// ticket
+    fin>>s; /// :
+    while(fin>>s){
+        if(s=="nearby"){
+            break;
+        }
+        fin>>as;
+    }
+    /// nearby
+    fin>>s;
+    fin>>s;
+    int nr=0;
+    while(fin>>s){
+        a=stoi(s);
+        if(valid(a)==0)
+            nr+=a;
+    }
+    cout<<nr;
+}
+
