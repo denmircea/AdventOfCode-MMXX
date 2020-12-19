@@ -1,0 +1,133 @@
+/// BMDesktop
+#include <iostream>
+#include <fstream>
+#include <cstring>
+#include <vector>
+#include <map>
+#include <algorithm>
+#include <set>
+using namespace std;
+
+string nameProb="test";
+ifstream fin(nameProb+".in");
+//ofstream fout(nameProb+".out");
+char *param[20];
+int k=0;
+char s[200];
+int lg;
+int a,b;
+vector < vector<int> > L[200];
+map<int,set<string> >m;
+int calc[1000];
+void solve(int rule)
+{
+    if(calc[rule]==1)
+        return;
+    calc[rule]=1;
+    for(auto v:L[rule])
+    {
+        for(auto it:v)
+            if(calc[it]==0)
+            {
+                calc[rule]=0;
+                return;
+            }
+    }
+    for(auto v:L[rule])
+    {
+        if(v.size()<2){
+           // cout<<rule<<endl;
+            m[rule].insert(m[v[0]].begin(),m[v[0]].end());
+            continue;
+        }
+        /// v[0] si v[1]
+        for(auto it:m[v[0]])
+            for(auto it2:m[v[1]])
+            {
+                m[rule].insert(it+it2);
+            }
+    }
+}
+
+int main()
+{
+    while(fin.getline(s,100))
+    {
+        if(strlen(s)<2)
+            break;
+        char *tok;
+        k=0;
+        for(tok=strtok(s," "); tok!=NULL; tok=strtok(NULL," "))
+        {
+            param[++k]=tok;
+        }
+        int regula= atoi(param[1]);
+        vector<int> aux;
+        for(int i=2; i<=k; i++)
+        {
+            if(strcmp(param[i],"|")==0)
+            {
+                L[regula].push_back(aux);
+                aux.clear();
+                continue;
+            }
+            else if(param[i][0]=='"')
+            {
+                if(param[i][1]=='a')
+                    a=regula;
+                else
+                    b=regula;
+                continue;
+            }
+            //cout<<regula<<" "<<param[i]<<endl;
+            aux.push_back(atoi(param[i]));
+        }
+        if(aux.size()!=0)
+            L[regula].push_back(aux);
+    }
+
+    int nr=0;
+    m[a].insert("a");
+    m[b].insert("b");
+    calc[a]=1;
+    calc[b]=1;
+    while(1)
+    {
+        bool ok=0;
+        for(int rule=1; rule<=199; rule++)
+        {
+            solve(rule);
+            if(calc[rule]==0)
+                ok=1;
+        }
+        if(ok==0)
+            break;
+    }
+    string ss;
+
+    while(fin>>ss)
+    {
+        //cout<<ss;
+        int st=L[0][0][0];
+        int dr=L[0][0][1];
+        bool ok=0;
+        for(auto it:m[st])
+        {
+            if(ss.rfind(it,0)!=0||ok==1)
+            {
+                continue;
+            }
+          //  cout<<it<<endl;
+            for(auto it2:m[dr])
+            {
+                if(it+it2==ss){
+                    nr++;
+                    ok=1;
+                break;
+                }
+            }
+        }
+    }
+    cout<<nr;
+}
+
