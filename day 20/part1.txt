@@ -1,0 +1,166 @@
+/// BMDesktop
+#include <iostream>
+#include <fstream>
+#include <map>
+#include <cstring>
+#include <set>
+using namespace std;
+
+string nameProb="test";
+ifstream fin(nameProb+".in");
+ofstream fout(nameProb+".out");
+char s[100];
+int fr[100];
+set<int> L[200];
+map<int,int> m;
+int k,id,nr;
+int tiles;
+char v[400][13][13];
+char x[200][200]; /// matricea imagine
+int img[20][20];/// aici id urile
+int b[300][6];
+int aux[5];
+map<int,int> borders,bord;
+bool verif(int id1,int id2)
+{
+    //    cout<<id1<<" "<<id2<<endl;
+    if(id1==0||id2==0)
+        return 1;
+    int ok=0;
+    for(int i=1; i<=4; i++)
+        for(int j=1; j<=4; j++)
+        {
+            if(b[id1][i]==b[id2][j])
+                ok++;
+        }
+    if(ok>=1)
+        return 1;
+    return 0;
+
+}
+void backtr(int x,int y)
+{
+    if(x==13)
+    {
+        for(int i=1; i<=12; i++,cout<<endl)
+            for(int j=1; j<=12; j++)
+                cout<<img[i][j]<<" ";
+        cout<<"gata";
+        exit(0);
+        return;
+    }
+
+    for(auto pas:L[img[x][y-1]])
+    {
+        if(fr[pas]==0)
+        {
+            fr[pas]=1;
+            img[x][y]=pas;
+            int nx,ny;
+            if(y==12)
+            {
+                nx=x+1;
+                ny=1;
+            }
+            else
+            {
+                nx=x;
+                ny=y+1;
+            }
+            if(L[ img[x-1][y] ].find(pas)!=L[img[x-1][y]].end()&&
+                    L[ img[x][y-1] ].find(pas)!=L[ img[x][y-1] ].end())
+            {
+                backtr(nx,ny);
+            }
+            fr[pas]=0;
+        }
+    }
+}
+void borduri(int id,int r[])
+{
+    int p=1;
+    r[1]=r[2]=r[3]=r[4]=0;
+    aux[1]=aux[2]=aux[3]=aux[4]=0;
+    int p2=512;
+    for(int i=0; i<10; i++)
+    {
+        if(v[id][i][0]=='#')
+            r[1]+=p;
+        if(v[id][0][i]=='#')
+            r[2]+=p;
+        if(v[id][i][9]=='#')
+            r[3]+=p;
+        if(v[id][9][i]=='#')
+            r[4]+=p;
+        p*=2;
+        if(v[id][i][0]=='#')
+            aux[1]+=p2;
+        if(v[id][0][i]=='#')
+            aux[2]+=p2;
+        if(v[id][i][9]=='#')
+            aux[3]+=p2;
+        if(v[id][9][i]=='#')
+            aux[4]+=p2;
+        p2/=2;
+    }
+    for(int i=1;i<=4;i++){
+        r[i]=min(r[i],aux[i]);
+        borders[r[i]]++;
+    }
+
+}
+int main()
+{
+    while(fin>>s)
+    {
+        if(strcmp(s,"Tile")==0)
+        {
+            fin>>s; ///id
+            id=atoi(s);
+            //cout<<id<<endl;
+            if(m[id]==0)
+                m[id]=++tiles;
+            id=m[id];
+            k=0;
+            nr++;
+        }
+        else
+        {
+            strcpy(v[id][0],s);
+            for(int k=1; k<10; k++)
+                fin>>v[id][k];
+        }
+    }
+
+    for(int i=1; i<=tiles; i++)
+    {
+        borduri(i,b[i]);
+    }
+    for(int i=1; i<=tiles; i++)
+    {
+        int cnt=0;
+        for(int j=1; j<=4; j++)
+        {
+            if(borders[b[i][j]]==2)
+                cnt++;
+        }
+        if(cnt==2){
+            for(auto it:m){
+                if(it.second==i)
+                    cout<<it.first<<endl;
+            }
+             L[0].insert(i);
+        }
+    }
+    cout<<L[0].size();
+    for(int i=1; i<=tiles; i++)
+        for(int j=i+1; j<=tiles; j++)
+            if(verif(i,j))
+            {
+                L[i].insert(j);
+                L[j].insert(i);
+            }
+    backtr(1,1);
+
+
+}
