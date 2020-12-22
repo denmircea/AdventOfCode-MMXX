@@ -1,0 +1,47 @@
+/// BMDesktop
+#include <iostream>
+#include <fstream>
+#include <deque>
+using namespace std;
+
+string nameProb="test";
+ifstream fin1(nameProb+"1.in");
+ifstream fin2(nameProb+"2.in");
+//ofstream fout(nameProb+".out");
+int x;
+deque<int> q1,q2;
+int main()
+{
+    while(fin1>>x){
+        q1.push_back(x);
+    }
+    while(fin2>>x){
+        q2.push_back(x);
+    }
+    while(!q1.empty()&&!q2.empty()){
+        int x;
+        int y;
+        x=q1.front();
+        q1.pop_front();
+        y=q2.front();
+        q2.pop_front();
+        if(x>y){
+            q1.push_back(x);
+            q1.push_back(y);
+        }
+        else {
+            q2.push_back(y);
+            q2.push_back(x);
+        }
+
+    }
+    if(q1.size()==0)
+        q1=q2;
+    long long sum=0;
+    int p=q1.size();
+    for(auto it:q1){
+        sum+=it*p;
+        p--;
+    }
+    cout<<sum;
+}
