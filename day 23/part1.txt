@@ -1,0 +1,82 @@
+/// BMDesktop
+#include <iostream>
+#include <fstream>
+#include <deque>
+#include <vector>
+using namespace std;
+
+string nameProb="test";
+ifstream fin(nameProb+".in");
+//ofstream fout(nameProb+".out");
+
+int main()
+{
+    deque<int> v= {3,1,5,6,7,9,8,2,4};
+    deque<int> test= {3,8,9,1,2,5,4,6,7};
+   v=test;
+    int n=v.size();
+    int st=2;
+    for(int mv=1; mv<=100; mv++)
+    {
+        //cout<<mv<<" ----"<<endl;;
+//        for(auto it:v){
+//            cout<<it<<" ";
+//        }
+//        cout<<endl;
+        int maxx=-1;
+        int minn=-1;
+        int pmin,pmax,p;
+        vector<int> aux;
+        aux.push_back(v[1]);
+        aux.push_back(v[2]);
+        aux.push_back(v[3]);
+//         for(auto it:aux){
+//            cout<<it<<" ";
+//        }
+//        cout<<endl;
+        v.erase(v.begin()+1,v.begin()+4);
+//        for(auto it:v){
+//            cout<<it<<" ";
+//        }
+//        cout<<endl;
+//        cout<<v[0]<<endl;
+        for(int i=1; i<n-3; i++)
+        {
+            if(v[i]<v[0]&&v[i]>minn)
+            {
+                minn=v[i];
+                pmin=i;
+            }
+            if(v[i]>maxx)
+            {
+                maxx=max(maxx,v[i]);
+                pmax=i;
+            }
+            //cout<<v[i]<<" "<<minn<<" "<<maxx<<endl;
+        }
+        int dest;
+       // cout<<minn<<" "<<maxx<<endl;
+        if(minn==-1)
+        {
+            dest=maxx;
+            p=pmax;
+        }
+        else
+            dest=minn,p=pmin;
+       // cout<<p<<" :dest "<<dest<<endl;
+
+        for(int i=2; i>=0; i--)
+            v.insert(v.begin()+p+1,aux[i]);
+
+       // cout<<endl;
+        v.push_back(v.front());
+        v.pop_front();
+    }
+    while(v[0]!=1){
+        v.push_back(v.front());
+        v.pop_front();
+    }
+    for(int i=1;i<n;i++)
+        cout<<v[i];
+}
+
