@@ -1,0 +1,51 @@
+/// BMDesktop
+#include <iostream>
+#include <fstream>
+#include <map>
+using namespace std;
+
+string nameProb="test";
+ifstream fin(nameProb+".in");
+//ofstream fout(nameProb+".out");
+map< pair<int,int> ,int> m;
+map < string, pair<int,int> > dir;
+string s;
+void prelucrare(string s){
+    pair <int,int> poz(0,0);
+    string cuv;
+    for(auto it:s){
+        cuv+=it;
+        if(it=='n'||it=='s')
+            continue;
+        poz.first+=dir[cuv].first;
+        poz.second+=dir[cuv].second;
+        cuv="";
+    }
+    cout<<poz.first<<" "<<poz.second<<endl;
+    if(m[poz]==0)
+        m[poz]=1;
+        else
+            m.erase(m.find(poz));
+
+}
+int main()
+{
+    dir["e"]={0,1};
+    dir["w"]={0,-1};
+    dir["nw"]={-1,-1};
+    dir["ne"]={-1,0};
+    dir["sw"]={1,0};
+    dir["se"]={1,1};
+    while(fin>>s){
+        prelucrare(s);
+    }
+    int nr=0;
+    for(auto it:m){
+        if(it.second==1){
+            nr++;
+        }
+    }
+    int st=-20;
+    int dr=20;
+    cout<<nr;
+}
